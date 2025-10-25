@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+
+@import './base.css';
+
+:root {
+    font-family: 'Oxanium', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: #333333;
+    background-color: #ffffff;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --radius: 1.3rem;
+
+    --background: #ffffff;
+    --foreground: #0f1419;
+    --primary: #1e9df1;
+    --primary-foreground: #ffffff;
+    --secondary: #0f1419;
+    --secondary-foreground: #ffffff;
+    --muted: #e5e5e6;
+    --muted-foreground: #0f1419;
+    --accent: #e3ecf6;
+    --accent-foreground: #1e9df1;
+    --destructive: #f4212e;
+    --destructive-foreground: #ffffff;
+    --border: #e1eaef;
+    --input: #f7f9fa;
+    --sidebar: #f7f8f8;
+    --sidebar-foreground: #0f1419;
+
+    --ring: var(--primary);
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+    --chart-1: #1e9df1;
+    --chart-2: #00b87a;
+    --chart-3: #f7b928;
+    --chart-4: #17bf63;
+    --chart-5: #e0245e;
+}
+
+.dark {
+    --background: #000000;
+    --foreground: #e7e9ea;
+    --primary: #1c9cf0;
+    --primary-foreground: #ffffff;
+    --secondary: #f0f3f4;
+    --secondary-foreground: #0f1419;
+    --muted: #181818;
+    --muted-foreground: #72767a;
+    --accent: #061622;
+    --accent-foreground: #1c9cf0;
+    --destructive: #f4212e;
+    --destructive-foreground: #ffffff;
+    --border: #242628;
+    --input: #22303c;
+    --sidebar: #17181c;
+    --sidebar-foreground: #d9d9d9;
+
+    --ring: var(--primary);
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+    --chart-1: #1e9df1;
+    --chart-2: #00b87a;
+    --chart-3: #f7b928;
+    --chart-4: #17bf63;
+    --chart-5: #e0245e;
+}

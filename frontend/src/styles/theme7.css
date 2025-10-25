@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import './base.css';
+
+:root {
+    font-family: 'Geist', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: #333333;
+    background-color: #ffffff;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --radius: 1.1rem;
+
+    --background: oklch(0.985 0.002 247.839);
+    --foreground: oklch(0.129 0.042 264.695);
+    --primary: color(srgb 0.21087 0.1337 0.996);
+    --primary-foreground: oklch(0.984 0.003 247.858);
+    --secondary: oklch(0.92 0.0111 293.571);
+    --secondary-foreground: oklch(0.5 0.0666 293.571);
+    --muted: oklch(0.929 0.013 255.508);
+    --muted-foreground: oklch(0.5 0.0222 293.571);
+    --accent: oklch(0.92 0.0111 305.571);
+    --accent-foreground: oklch(0.5 0.0666 293.571);
+    --destructive: oklch(0.637 0.237 25.331);
+    --destructive-foreground: oklch(1 0 0);
+    --border: oklch(0.929 0.013 255.508);
+    --input: oklch(0.869 0.022 252.894);
+    --sidebar: oklch(0.98 0.005 293.571);
+    --sidebar-foreground: oklch(0.5 0.0666 293.571);
+
+    --ring: var(--primary);
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+    --chart-1: oklch(0.88 0.12765 293.571);
+    --chart-2: oklch(0.74 0.11655 5.571);
+    --chart-3: oklch(0.82 0.1332 77.571);
+    --chart-4: oklch(0.68 0.111 149.571);
+    --chart-5: oklch(0.86 0.10545 221.571);
+}
+
+.dark {
+    --background: oklch(0.18 0.0135 292.581);
+    --foreground: oklch(0.85 0.0216 292.581);
+    --card: oklch(0.23 0.0216 292.581);
+    --card-foreground: oklch(0.85 0.0216 292.581);
+    --popover: oklch(0.23 0.0216 292.581);
+    --popover-foreground: oklch(0.85 0.0216 292.581);
+    --primary: oklch(0.491 0.27 292.581);
+    --primary-foreground: oklch(0.98 0.081 292.581);
+    --secondary: oklch(0.28 0.0405 292.581);
+    --secondary-foreground: oklch(0.85 0.0216 292.581);
+    --muted: oklch(0.28 0.0405 292.581);
+    --muted-foreground: oklch(0.85 0.0405 292.581);
+    --accent: oklch(0.28 0.0405 280.581);
+    --accent-foreground: oklch(0.85 0.0216 292.581);
+    --destructive: oklch(0.637 0.237 25.331);
+    --destructive-foreground: oklch(0.971 0.013 17.38);
+    --border: oklch(0.26 0.008 292.581);
+    --input: oklch(0.26 0.008 292.581);
+    --sidebar: oklch(0.23 0.0216 292.581);
+    --sidebar-foreground: oklch(0.85 0.0216 292.581);
+
+    --ring: var(--primary);
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+    --chart-1: oklch(0.651 0.297 262.581);
+    --chart-2: oklch(0.531 0.27 277.581);
+    --chart-3: oklch(0.431 0.3105 292.581);
+    --chart-4: oklch(0.591 0.2565 307.581);
+    --chart-5: oklch(0.351 0.243 322.581);
+}

@@ -1,0 +1,97 @@
+name: Deploy to Cloudflare Pages on tag from main
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure tag commit is on main
+        run: |
+          git fetch origin main
+          if ! git merge-base --is-ancestor HEAD origin/main; then
+            echo "This tag is not from main. Aborting." >&2
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Create version.json from tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          if ! [[ "$VERSION" =~ ^[0-9]+$ ]]; then
+            echo "Tag name must be a number (e.g., 123). Got: $VERSION" >&2
+            exit 1
+          fi
+          echo "{ \"version\": ${VERSION} }" > frontend/public/version.json
+          echo "Wrote version.json:" && cat frontend/public/version.json
+
+      - name: Copy environment file
+        run: |
+          ENV_FILE=$(find . -name "frontend_*.env" | head -1)
+          if [ -n "$ENV_FILE" ]; then
+            echo "Found environment file: $ENV_FILE"
+            cp "$ENV_FILE" frontend/.env
+            echo "Copied $ENV_FILE to frontend/.env"
+          else
+            echo "No frontend_*.env file found"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build project
+        working-directory: frontend
+        run: pnpm run build
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Create Cloudflare Pages project if not exists
+        run: |
+          PROJECT_NAME="${{ github.event.repository.name }}"
+          echo "Checking if project ${PROJECT_NAME} exists..."
+          
+          # Check if project exists using wrangler
+          if wrangler pages project list | grep -q "${PROJECT_NAME}"; then
+            echo "Project ${PROJECT_NAME} already exists"
+          else
+            echo "Creating new project: ${PROJECT_NAME}"
+            wrangler pages project create "${PROJECT_NAME}" --production-branch publish
+            echo "Project created successfully"
+          fi
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy frontend/dist --project-name="${{ github.event.repository.name }}" --branch publish
+
