@@ -63,10 +63,9 @@ const createApiInstance = (): AxiosInstance => {
                 if (!refreshToken) {
                     processQueue(error, null);
                     clearAuthData();
-                    // TODO: Add this redirect once login page is implemented
-                    // if (window.location.pathname !== '/login') {
-                    //     window.location.href = '/';
-                    // }
+                    if (window.location.pathname !== '/login') {
+                        window.location.href = '/login';
+                    }
                     return Promise.reject(error);
                 }
 
@@ -89,10 +88,9 @@ const createApiInstance = (): AxiosInstance => {
                     console.log('Token refresh failed:', refreshError);
                     processQueue(refreshError, null);
                     clearAuthData();
-                    // TODO: Add this redirect once login page is implemented
-                    // if (window.location.pathname !== '/login') {
-                    //     window.location.href = '/login';
-                    // }
+                    if (window.location.pathname !== '/login') {
+                        window.location.href = '/login';
+                    }
                     return Promise.reject(refreshError);
                 } finally {
                     isRefreshing = false;

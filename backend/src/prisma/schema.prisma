@@ -24,6 +24,9 @@ model User {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   Token           Token[]
+  events          Event[]
+  messages        Message[]
+  attendees       Attendee[]
 }
 
 model Token {
@@ -35,6 +38,73 @@ model Token {
   createdAt   DateTime  @default(now())
   user        User      @relation(fields: [userId], references: [id])
   userId      Int
+}
+
+model Event {
+  id            String     @id @default(cuid())
+  title         String
+  description   String
+  startDate     DateTime
+  endDate       DateTime?
+  locationType  String
+  address       String?
+  virtualLink   String?
+  capacity      Int?
+  rsvpDeadline  DateTime?
+  status        String     @default("draft")
+  visibility    String     @default("public")
+  createdBy     Int
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  creator       User       @relation(fields: [createdBy], references: [id])
+  attendees     Attendee[]
+  messages      Message[]
+}
+
+model Attendee {
+  id                    String    @id @default(cuid())
+  eventId               String
+  name                  String
+  email                 String
+  rsvpStatus            String
+  dietaryRequirements   String?
+  phone                 String?
+  company               String?
+  registrationDate      DateTime  @default(now())
+  event                 Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  registeredBy          User?     @relation(fields: [registeredById], references: [id])
+  registeredById        Int?
+  
+  @@unique([eventId, email])
+}
+
+model Message {
+  id               String    @id @default(cuid())
+  eventId          String
+  subject          String
+  content          String
+  recipientCount   Int       @default(0)
+  deliveryStatus   String    @default("draft")
+  scheduledDate    DateTime?
+  sentDate         DateTime?
+  createdBy        Int
+  createdAt        DateTime  @default(now())
+  rsvpStatusFilter String?
+  searchQuery      String?
+  dateRangeStart   DateTime?
+  dateRangeEnd     DateTime?
+  event            Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  creator          User      @relation(fields: [createdBy], references: [id])
+}
+
+model MessageTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  subject   String
+  content   String
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {

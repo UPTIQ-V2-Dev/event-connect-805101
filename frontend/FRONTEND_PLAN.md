@@ -13,7 +13,29 @@
 
 ## Pages & Implementation Plan
 
-### 1. Dashboard Page (`/dashboard`)
+### 1. Login Page (`/login`)
+
+**Components:**
+
+- `LoginForm` (email, password fields with validation)
+- `LoginHeader` (app branding, welcome message)
+- `ForgotPasswordLink`
+- `SignupLink`
+
+**API Endpoints:**
+
+- `POST /api/auth/login`
+- `POST /api/auth/forgot-password`
+
+**Types:** `LoginRequest`, `AuthResponse`
+
+**Validation:** Email format, password requirements
+
+**Features:** Remember me option, error handling, loading states
+
+---
+
+### 2. Dashboard Page (`/dashboard`)
 
 **Components:**
 

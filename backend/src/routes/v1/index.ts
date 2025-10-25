@@ -1,7 +1,12 @@
 import config from '../../config/config.ts';
+import attendeeRoute from './attendee.route.ts';
 import authRoute from './auth.route.ts';
+import dashboardRoute from './dashboard.route.ts';
 import docsRoute from './docs.route.ts';
+import eventRoute from './event.route.ts';
 import mcpRoute from './mcp.route.ts';
+import messageRoute from './message.route.ts';
+import messageTemplateRoute from './messageTemplate.route.ts';
 import userRoute from './user.route.ts';
 import express from 'express';
 
@@ -13,12 +18,32 @@ const defaultRoutes = [
         route: authRoute
     },
     {
+        path: '/dashboard',
+        route: dashboardRoute
+    },
+    {
+        path: '/events',
+        route: eventRoute
+    },
+    {
         path: '/users',
         route: userRoute
     },
     {
+        path: '/',
+        route: attendeeRoute
+    },
+    {
         path: '/mcp',
         route: mcpRoute
+    },
+    {
+        path: '/messages',
+        route: messageRoute
+    },
+    {
+        path: '/message-templates',
+        route: messageTemplateRoute
     }
 ];
 

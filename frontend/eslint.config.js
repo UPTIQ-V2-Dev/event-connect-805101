@@ -7,7 +7,7 @@ import prettier from 'eslint-plugin-prettier';
 import unUsedImports from 'eslint-plugin-unused-imports';
 
 export default tseslint.config(
-    { ignores: ['dist', 'vite.config.ts', 'vite-plugin-iframe-errors.ts'] },
+    { ignores: ['dist', 'vite.config.ts', 'vite-plugin-iframe-errors.ts', 'backend/**/*'] },
     {
         extends: [js.configs.recommended, ...tseslint.configs.recommended],
         files: ['src/**/*.{ts,tsx}'],

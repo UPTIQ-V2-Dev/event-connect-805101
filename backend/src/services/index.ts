@@ -2,3 +2,8 @@ export { default as authService } from './auth.service.ts';
 export { default as userService } from './user.service.ts';
 export { default as tokenService } from './token.service.ts';
 export { default as emailService } from './email.service.ts';
+export { default as dashboardService } from './dashboard.service.ts';
+export { default as eventService } from './event.service.ts';
+export { default as attendeeService } from './attendee.service.ts';
+export { default as messageService } from './message.service.ts';
+export { default as messageTemplateService } from './messageTemplate.service.ts';
